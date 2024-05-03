@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+	<xs:element name="anime" maxOccurs="unbounded" minOccurs="0">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="nazwa_anime" type="nazwa_animeType"/>
+				<xs:element name="links" type="linksType"/>
+				<xs:element name="link" type="linkType"/>
+				<xs:element name="media" type="mediaType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+		<xs:simpleType name="tytuł">
+		<xs:restriction base="xs:string">
+			<xs:length value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="top">
+		<xs:restriction base="xs:string">
+			<xs:length value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+		
+	<xs:complexType name="nazwa_animeType">
+		<xs:sequence>
+			<xs:element name="nazwa" type="xs:string"/>
+			<xs:element name="opis" type="opisType"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="opisType">
+		<xs:sequence>
+			<xs:element  name="gatunek" type="gatunekType"/>
+			<xs:element name="ile_odc" type="ile_odcType"/>
+			<xs:element name="pierwowzór" type="pierwowzórType"/>
+			<xs:element name="tekst" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="gatunekType">
+		<xs:sequence>
+			<xs:element name="tekst" type="xs:string"/>
+			<xs:element name="zalecany_odb" type="zalecany_odbType"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="zalecany_odbType">
+		<xs:sequence>
+			<xs:element name="tekst" type="xs:string"/>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="120"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ile_odcType">
+		<xs:sequence>
+			<xs:element name="tekst" type="xs:string"/>
+			<xs:element name="odc" type="xs:integer"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="pierwowzórType">
+		<xs:sequence>
+			<xs:element name="tekst" type="xs:string" use="optional"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="linksType">
+		<xs:sequence>
+			<xs:element ref="link"  minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="linkType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name= "source" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<xs:complexType name="mediaType">
+		<xs:sequence>
+			<xs:element ref="image" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="image" type="linkType" />
+	
+	<xs:simpleType name="dzk">
+		<xs:restriction base="xs:string">
+			<xs:length value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ser">
+		<xs:restriction base="xs:string">
+			<xs:length value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="nazw">
+		<xs:restriction base="xs:string">
+			<xs:length value="25"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+</xs:schema>
